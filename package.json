@@ -1,7 +1,7 @@
 {
   "name": "ember-tumblr-data",
-  "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "version": "0.0.1-alpha",
+  "description": "adapter and serializers for use with tumblr's api/v2; useful for a quick and dirty database on tumblr",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -11,7 +11,7 @@
     "build": "ember build",
     "test": "ember try:testall"
   },
-  "repository": "",
+  "repository": "https://github.com/foxnewsnetwork/ember-tumblr-data",
   "engines": {
     "node": ">= 0.10.0"
   },
@@ -35,7 +35,8 @@
     "ember-try": "0.0.4"
   },
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "tumblr"
   ],
   "dependencies": {
     "ember-cli-coffeescript": "0.11.0",
