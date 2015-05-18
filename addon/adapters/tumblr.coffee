@@ -9,7 +9,6 @@ lll = (x) ->
 
 TumblrAdapter = DS.RESTAdapter.extend
   host: 'http://api.tumblr.com'
-  namespace: 'v2/blog/blogsqlapi.tumblr.com'
   defaultSerializer: '-tumblr'
   apiKey: "PUT YOUR OWN KEY HERE"
 

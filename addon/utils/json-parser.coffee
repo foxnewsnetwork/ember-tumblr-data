@@ -1,5 +1,6 @@
 `import Ember from 'ember'`
 
+map = Ember.EnumerableUtils.map
 lll = (x) ->
   console.log x
   x

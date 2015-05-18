@@ -20,12 +20,20 @@ module 'Acceptance: TumblrPromotion',
   afterEach: ->
     Ember.run application, 'destroy'
 
+test "looking up all promotions", (assert) ->
+  Ember.run ->
+    store.find "promotion"
+    .then (promotions) ->
+      assert.ok promotions, "we should have promotions"
+      assert.equal promotions.get("length"), 1, "one promotion"
+
+
 test 'hitting up remote tumblr', (assert) ->
   Ember.run ->
-    store.find 'promotion', '118064140679'
+    store.find 'promotion', '119308465280'
     .then (promotion) ->
       assert.ok promotion, "it should find a promotion from tumblr"
-      assert.equal promotion.get("message"), "you should be able to read this from ember", 'it should have the correct message attr'
+      assert.equal promotion.get("message"), "this is a test of the message system", 'it should have the correct message attr'
       assert.deepEqual promotion.get("tags"), ["promotion"], 'it should have the correct tag attribute'
     .catch (error) ->
       console.log error

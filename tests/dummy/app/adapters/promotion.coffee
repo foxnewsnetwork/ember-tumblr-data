@@ -1,6 +1,7 @@
 `import { TumblrAdapter } from 'ember-tumblr-data'`
 
 PromotionAdapter = TumblrAdapter.extend
-  apiKey: "find this in api-key.txt (not committed to public repo for obvious reasons)"
+  apiKey: "NOT A REAL KEY"
+  namespace: 'v2/blog/mlrecycling.tumblr.com'
 
 `export default PromotionAdapter`

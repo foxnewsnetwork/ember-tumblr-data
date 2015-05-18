@@ -1,6 +1,6 @@
 # Ember-tumblr-data
 
-This README outlines the details of collaborating on this Ember addon.
+Adapter and serializers for emberjs to use tumblr (via their api) as a sort of DIY free database solution. This is super experimental alpha software, use it at your own peril (I know I will).
 
 ## Installation
 
