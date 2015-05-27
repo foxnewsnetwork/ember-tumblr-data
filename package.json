@@ -1,6 +1,6 @@
 {
   "name": "ember-tumblr-data",
-  "version": "0.0.2-alpha",
+  "version": "0.0.3-alpha",
   "description": "adapter and serializers for use with tumblr's api/v2; useful for a quick and dirty database on tumblr",
   "directories": {
     "doc": "doc",

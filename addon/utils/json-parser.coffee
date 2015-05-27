@@ -28,12 +28,13 @@ cleanString = (string) ->
   .replace /“/gi, '"'
   .replace /”/gi, '"'
 
-parsePost = ({id, date, tags, title, body}) ->
+parsePost = ({id, date, tags, title, body, photos}) ->
   hash = camelizeKeys JSON.parse cleanString body
   hash.id = id
   hash.createdAt = date
   hash.tags = tags
   hash.title = title
+  hash.photos = photos
   hash
 
 `export default getContents`
