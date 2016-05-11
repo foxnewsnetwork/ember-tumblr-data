@@ -1,0 +1,16 @@
+{{#component
+  (if href (component "external-link-to" href=href class="mdl-list__item-primary-content") 
+  (if model (component "link-to" "announcement.index" model class="mdl-list__item-primary-content") 
+  (component "component-wrap" "div" class="mdl-list__item-primary-content")))
+  }}
+
+  {{yield (hash
+    avatar=(component "component-wrap" "span" class="mdl-list__item-avatar material-icons")
+    headline=(component "component-wrap" "span" class="fansite-announcment-list-item__headline")
+    copy=(component "component-wrap" "span" class="mdl-list__item-text-body")
+    secondary=(component "block-for" "secondary")
+  )}}
+    
+{{/component}}
+
+{{named-yield "secondary" tagName="span" class="mdl-list__item-secondary-content"}}

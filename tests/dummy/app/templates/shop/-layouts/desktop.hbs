@@ -1,0 +1,19 @@
+{{!--
+  Layout: ember-tumblr-data
+  This template will be rendered with the route controller's
+  context when `device/layout.isShop/desktop` is true.
+--}}
+<screen>
+  <container>
+    <grid>
+      {{#each model as |product|}}
+        {{#fansite-image-card click=(action "chooseProduct" product) imgSrc=product.leadImage as |card|}}
+          {{#card.top}}
+            {{product.pricePresentation}}
+          {{/card.top}}
+          {{product.title}}
+        {{/fansite-image-card}}
+      {{/each}}
+    </grid>
+  </container>
+</screen>

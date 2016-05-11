@@ -2,6 +2,7 @@
 
 # secrets
 api-key.txt
+tests/fixtures/keys.js
 
 # compiled output
 /dist

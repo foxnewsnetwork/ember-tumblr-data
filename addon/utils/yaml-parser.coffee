@@ -1,17 +1,15 @@
 `import Ember from 'ember'`
-`import { camelizeKeys, lll } from './json-parser'`
+`import { camelizeKeys, getMeta } from './json-parser'`
 
-map = Ember.EnumerableUtils.map
-
-getMeta = ({meta, total_posts}) ->
-  meta.totalPosts = total_posts
-  meta
+{A} = Ember
 
 getContent = ({response: {posts: [post, ...]}}) ->
   findPostParser(post)?(post)
 
-getContents = ({response: {posts}}) ->
-  map posts, parsePost
+getContents = ({response: {posts}}) ->  
+  A posts
+  .map (post) ->
+    parsePost post
 
 findPostParser = ({type}) ->
   switch type

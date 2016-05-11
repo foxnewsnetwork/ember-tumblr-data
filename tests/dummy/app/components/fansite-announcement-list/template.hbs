@@ -1,0 +1,8 @@
+{{named-yield "title" tagName="h5" class="mdl-typography__headline fansite-announcement-list__headline"}}
+
+<ul class="fansite-announcement-list__list-group mdl-list">
+  {{yield (hash
+    title=(component "block-for" "title")
+    item=(component "fansite-announcement-list-item")
+  )}}
+</ul>

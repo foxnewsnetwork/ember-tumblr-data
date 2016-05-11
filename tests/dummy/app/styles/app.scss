@@ -1,0 +1,95 @@
+@import 'material-design-lite';
+@import 'color-definitions';
+@import 'ember-matport';
+@import "ember-matweb";
+@import 'storefront';
+@import "bootstrap/variables";
+@import "bootstrap/mixins";
+@import "bootstrap/alerts";
+
+.matport-header__logo {
+  background-image: url("images/animu1.png");
+}
+
+.matport-header {
+  background: {
+    image: url("images/header-bg.jpg");
+    position: center top;
+  }
+}
+.matport-big-card__copy {
+  width: 100%;
+}
+.matport-header__navlink {
+  transition-property: background-color;
+  transition-duration: 250ms;
+  transition-timing-function: ease-in-out;
+  &:hover {
+    background-color: rgba(#FFECB3, 0.5);
+  }
+}
+.matport-header__navigation-row {
+  background-color: rgba(#000, 0.15);
+}
+
+.android-be-together-section {
+  height: 450px;
+}
+
+.container-lg {
+  min-width: auto;
+  width: 900px;
+  margin: auto;
+}
+
+.fansite-announcement-list__headline {
+  padding: 1.25em 0;
+  border-bottom: 1px solid #78909C;
+}
+
+.fansite-announcement-list-item {
+  transition-property: background-color;
+  transition-duration: 250ms;
+  transition-timing-function: ease-in-out;
+  &:hover {
+    background-color: #FFECB3;
+  }
+}
+
+.fansite-image-card {
+  cursor: pointer;
+  .mdl-card__actions {
+    height: 52px;
+    padding: 16px;
+    background: rgba(0, 0, 0, 0.4);
+    color: #fff;
+  }
+  .mdl-card__title {
+    align-items: flex-end;
+    justify-content: flex-end;
+  }
+}
+
+.fansite-image-card__title-inner {
+  background-color: rgba(#fff, 0.6);
+}
+
+.border-bottom {
+  border-bottom: 1px solid #78909C;
+}
+.border-top {
+  border-top: 1px solid #78909C;
+}
+.topdown-separated {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.change-language-button {
+  position: fixed;
+  z-index: 9876543210;
+  left: 25px;
+  bottom: 5px;
+}

@@ -1,3 +1,4 @@
+`import Ember from 'ember'`
 class ParseError extends Error
   constructor: (@token, @string) ->
     @message = "Expected #{@token} to match #{@string.slice 0, @token.length}"
@@ -12,7 +13,7 @@ consumeCore = (token, string) ->
 tryConsume = (token) -> (string) -> tryCore token, string
 
 EOLTrim = (string) ->
-  string: string.trim()
+  rest: string.trim()
   tokens: []
 
 tryCore = (token, string) ->
@@ -23,10 +24,20 @@ tryCore = (token, string) ->
     else
       return new ParseError token, string
   rest: string.slice(i)
-  tokens: [token]
+  tokens: if Ember.isPresent(token) then [token] else []
 
 tryOneOf = (choices...) ->
-  chainParser.apply null, choices.map tryConsume
+  (string) ->
+    output = null
+    Ember.A(choices).find (choice) ->
+      parser = consume choice
+      try
+        output = parser string
+        return true
+      catch error
+        return false if error instanceof ParseError
+        throw error
+    return output
 
 zeroParse = ({rest}) ->
   tokens: []
@@ -36,18 +47,17 @@ liftP = (string) -> zeroParse rest: string
 
 chainParser = (p, parsers...) ->
   p ?= zeroParse
-  parsers.reduce chainParserCore, p
+  parsers.reduce combineParser, p
 
-chainParserCore = (p1, p2) ->
+combineParser = (p1, p2) ->
   (string) ->
-    p1result = log p1 string
+    p1result = p1 string
     if p1result instanceof ParseError
-      {rest, tokens} = p2 string
+      throw p1result
     else
       {rest, tokens} = p2 p1result.rest
       tokens = p1result.tokens.concat tokens
-    rest: rest
-    tokens: tokens
+    {rest, tokens}
 
 compose = (f, functions...) ->
   f ?= (x) -> x
@@ -55,8 +65,6 @@ compose = (f, functions...) ->
 
 composeCore = (f,g) ->
   (x) -> g f x
-
-map = Ember.EnumerableUtils.map
 
 getMeta = ({meta, total_posts}) ->
   meta.totalPosts = total_posts
@@ -66,7 +74,8 @@ getContent = ({response: {posts: [post, ...]}}) ->
   findPostParser(post)?(post)
 
 getContents = ({response: {posts}}) ->
-  map posts, parsePost
+  Ember.A posts
+  .map parsePost
 
 findPostParser = ({type}) ->
   switch type

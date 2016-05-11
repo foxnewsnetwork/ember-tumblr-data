@@ -1,23 +1,24 @@
 `import Ember from 'ember'`
 
-map = Ember.EnumerableUtils.map
+{A, String} = Ember
 lll = (x) ->
   console.log x
   x
 
-getMeta = ({meta, total_posts}) ->
-  meta.totalPosts = total_posts
+getMeta = ({meta, totalPosts}) ->
+  meta.totalPosts = totalPosts
   meta
 
 getContent = ({response: {posts: [post, ...]}}) ->
   parsePost post
 
 getContents = ({response: {posts}}) ->
-  map posts, parsePost
+  A posts
+  .map parsePost
 
 camelizeKeys = (hash) ->
   for key, value of hash
-    camelKey = Ember.String.camelize key
+    camelKey = String.camelize key
     if key isnt camelKey
       hash[camelKey] = value
       delete hash[key]

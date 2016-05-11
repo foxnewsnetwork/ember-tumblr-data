@@ -1,0 +1,24 @@
+{{!--
+  Layout: ember-tumblr-data
+  This template will be rendered with the route controller's
+  context when `device/layout.isDiscography/desktop` is true.
+--}}
+<screen>
+  <container>
+    <grid>
+      {{#each model as |disco|}}
+        {{#matport-common-card
+          title=disco.title
+          bgSrc=disco.leadImage as |card|}}
+          {{#card.main}}
+            {{disco.summary}}
+          {{/card.main}}
+
+          {{#external-link-to href=disco.youtubeLink class=card.ctaClass}}
+            {{fa-icon "youtube"}}
+          {{/external-link-to}}
+        {{/matport-common-card}}
+      {{/each}}
+    </grid>
+  </container>
+</screen>

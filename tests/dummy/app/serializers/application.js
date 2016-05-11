@@ -1,0 +1,1 @@
+export { default } from 'ember-tumblr-data/serializers/tumblr-yaml';

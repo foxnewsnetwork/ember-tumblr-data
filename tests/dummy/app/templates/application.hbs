@@ -1,3 +1,27 @@
-<h2 id="title">Welcome to Ember.js</h2>
+{{#matport-layout title=(t "application.title")
+  navLinks=(append
+    (hash path="index" text=(t "routes.home"))
+    (hash path="about" text=(t "routes.about"))
+    (hash path="discography" text=(t "routes.discography"))
+    (hash path="shop" text=(t "routes.shop")))
+  footLinks=(append
+    (hash path="goods" text=(t "routes.goods"))
+    (hash href="https://foxnewsnetwork.github.io" text=(t "routes.built-by") ))
+}}
+  {{outlet}}
+{{/matport-layout}}
 
-{{outlet}}
+{{ember-notify messageStyle='bootstrap' closeAfter=10000}}
+
+{{#mdl-menu align="top-left" icon="language" class="change-language-button"}} 
+  {{#each languageEnv.locales as |locale|}}
+    {{#mdl-menu-item action=(action "changeLocale" target=languageEnv) locale=locale}}
+      {{world-flag (compute (action "flagify" target=languageEnv) locale) 16}}
+      {{#if (eq locale languageEnv.locale)}}
+        <strong>{{t (concat "language." locale)}}</strong>
+      {{else}}
+        {{t (concat "language." locale)}}
+      {{/if}}
+    {{/mdl-menu-item}}
+  {{/each}}
+{{/mdl-menu}}

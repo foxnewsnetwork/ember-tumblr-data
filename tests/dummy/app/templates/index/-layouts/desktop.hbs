@@ -1,0 +1,62 @@
+{{!--
+  Layout: ember-tumblr-data
+  This template will be rendered with the route controller's
+  context when `device/layout.isIndex/desktop` is true.
+--}}
+
+<screen>
+  {{#website-hero as |hero|}}
+    {{#hero.title}}
+      {{t "index.hero.title"}}
+    {{/hero.title}}
+    {{#hero.subtitle}}
+      {{t "index.hero.subtitle"}}
+    {{/hero.subtitle}}
+  {{/website-hero}}
+
+  <container>
+    <grid>
+      <box md="8" lg="8">
+        {{#fansite-announcement-list as |list|}}
+          {{#list.title}}
+            {{t "index.announcements"}}
+          {{/list.title}}
+          {{#each model as |announcement|}}
+            {{#list.item as |item|}}
+              {{#item.avatar}}info{{/item.avatar}}
+              {{#item.headline}}
+                {{announcement.title}}
+              {{/item.headline}}
+              {{#item.copy}}
+                {{announcement.message}}
+              {{/item.copy}}
+              {{#item.secondary}}
+                <span class="mdl-list__item-secondary-info">
+                  {{moment-format announcement.createdAt}}
+                </span>
+              {{/item.secondary}}
+            {{/list.item}}
+          {{/each}}
+        {{/fansite-announcement-list}}
+      </box>
+      <box md="4" lg="4">
+        <h5 class="mdl-typography__headline fansite-announcement-list__headline">&nbsp;</h5>
+        {{#with (find-by "type" "youtube" model) as |announcement|}}
+          {{ember-youtube ytid=announcement.external playerVars=(hash autoplay=0 showinfo=1)}}
+        {{/with}}
+      </box>
+    </grid>
+
+    <hbox class="topdown-separated border-top">
+      <a href="http://twitter.com/jjmiume" class="mdl-button mdl-js-button mdl-button--fab material-icons">
+        {{fa-icon "twitter"}}
+      </a>
+      <a href="https://www.facebook.com/MiumeOfficial/info" class="mdl-button mdl-js-button mdl-button--fab material-icons">
+        {{fa-icon "facebook"}}
+      </a>
+      <a href="http://www.weibo.com/u/5173316049" class="mdl-button mdl-js-button mdl-button--fab material-icons">
+        {{fa-icon "weibo"}}
+      </a>
+    </hbox>
+  </container>
+</screen>

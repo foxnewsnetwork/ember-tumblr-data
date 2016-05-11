@@ -1,0 +1,9 @@
+{{named-yield "top" class="mdl-card__title mdl-card--expand" portal-class="fansite-image-card__title-inner"}}
+
+<div class="mdl-card__actions mdl-card--border">
+  {{yield (hash 
+    top=(component "block-for" "top")
+    actionClass="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+    spacerClass="mdl-layout-spacer"
+  )}}
+</div>

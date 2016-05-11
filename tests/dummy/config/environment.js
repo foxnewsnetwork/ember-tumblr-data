@@ -5,7 +5,18 @@ module.exports = function(environment) {
     modulePrefix: 'dummy',
     environment: environment,
     baseURL: '/',
+    blogURL: "emberblogdata.tumblr.com",
     locationType: 'auto',
+    defaultLocale: 'en-us',
+    contentSecurityPolicy: {
+      'default-src': ["*"],
+      'script-src':  ["'self'", "http://api.tumblr.com", "https://www.youtube.com", "https://s.ytimg.com"],
+      'font-src':    ["*"],
+      'connect-src': ["*"],
+      'img-src':     ["*"],
+      'style-src':   ["'self'", "http://fonts.googleapis.com"],
+      'media-src':   ["*"]
+    },
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build

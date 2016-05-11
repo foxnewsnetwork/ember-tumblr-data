@@ -1,28 +1,13 @@
 `import Ember from 'ember'`
-`import { module, test } from 'qunit'`
-`import startApp from '../helpers/start-app'`
+`import { test } from 'qunit'`
+`import moduleForAccpetance from '../helpers/module-for-acceptance'`
 
-application = null
-container = null
-store = null
-module 'Acceptance: TumblrTruck',
-  beforeEach: ->
-    application = startApp()
-    container = application.__container__
-    store = container.lookup "store:main"
-    ###
-    Don't return as Ember.Application.then is deprecated.
-    Newer version of QUnit uses the return value's .then
-    function to wait for promises if it exists.
-    ###
-    return
-
-  afterEach: ->
-    Ember.run application, 'destroy'
+moduleForAccpetance 'Acceptance: TumblrTruck'
 
 test "looking up all trucks", (assert) ->
+  store = @application.__container__.lookup("service:store")
   Ember.run ->
-    store.find "truck"
+    store.findAll "truck"
     .then (trucks) ->
       assert.ok trucks, "we should have trucks"
       assert.equal trucks.get("length"), 1, "one truck"
@@ -31,8 +16,9 @@ test "looking up all trucks", (assert) ->
       assert.ok truck.get("id"), "the truck should have a proper id:#{truck.get 'id'}"
 
 test "direct find", (assert) ->
+  store = @application.__container__.lookup("service:store")
   Ember.run ->
-    store.find "truck", 119307968005
+    store.findRecord "truck", 119307968005
     .then (truck) ->
       assert.ok truck
       assert.equal truck.get("message"), "hello world"
